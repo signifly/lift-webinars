@@ -23,6 +23,7 @@ function validateSSOToken(code, uri) {
     let data = JSON.parse(this.response)
 
     if (request.status >= 200 && request.status < 400) {
+      console.log('data', data)
       Cookies.set('lift.sso.login', 1, { expires: 1 })
       Cookies.set('lift.user', data.user.user.email, { expires: 1 })
       Cookies.set('lift.name', `${data.user.user.firstName} ${data.user.user.lastName}`, {
