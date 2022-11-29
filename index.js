@@ -37,7 +37,6 @@ function validateSSOToken(code, uri) {
         })
       }
 
-
       if (data?.user?.uid) {
         Cookies.set('lift.userId', data.user.uid, { expires: 1 })
       }
@@ -170,6 +169,7 @@ $('.popup-modal--close').click(function (item) {
     videoUrl = ''
   }
 })
+
 function myNewSrc() {
   if (bumperPlayed == true && videoPlayed == false && videoUrl) {
     let video = myGetById('video-hls')
@@ -184,6 +184,7 @@ function myNewSrc() {
     hls.attachMedia(video)
   }
 }
+
 function init() {
   let video = myGetById('video-hls')
   if (Hls.isSupported()) {
@@ -237,6 +238,7 @@ function init() {
     )
   }
 }
+
 function checkSignupStatus() {
   const latestSignup = localStorage ? localStorage.getItem('latestSignup') : ''
   const currentEvent = myGetById('upcoming-webinar-date').textContent
@@ -253,6 +255,7 @@ function checkSignupStatus() {
     }
   }
 }
+
 function toggleButtons() {
   const registerButton = myGetById('upcoming-webinar-register')
   const afterRegisterButtons = myGetById('after-register-buttons')
@@ -267,6 +270,7 @@ function mobileOS() {
   if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) return 'ios'
   return null
 }
+
 if (mobileOS()) {
   $('html').addClass('mobile-container')
   $('.main-wrapper').addClass('mobile-container')
@@ -283,4 +287,13 @@ $(document).ready(function () {
     let SSO_REDIRECT_URI = 'https://seminars.onlinefitness.liftsession.com/index.html'
     validateSSOToken(value, encodeURIComponent(SSO_REDIRECT_URI))
   }
+})
+
+$('.submit-button').click(() => {
+  const email = $('#email')
+  const name = $('#name')
+  const form = $('#wf-form-Form-Date')
+  console.log('email', email)
+  console.log('name', name)
+  console.log('form', form)
 })
