@@ -1,71 +1,73 @@
-console.log('TEST')
+window.addEventListener('DOMContentLoaded', (event) => {
+  console.log('TEST')
+})
 
-(() => {
-  // automatically track all anchor click events:
-  // also track all elements that have this class
-  const trackClassName = 'ga-event'
-  // page context class detection (change if needed):
-  const topNavLinkClass = 'nav-link'
-  const footerLinkClass = 'footer-link'
-  const buttonClass = 'w-button'
+// (() => {
+//   // automatically track all anchor click events:
+//   // also track all elements that have this class
+//   const trackClassName = 'ga-event'
+//   // page context class detection (change if needed):
+//   const topNavLinkClass = 'nav-link'
+//   const footerLinkClass = 'footer-link'
+//   const buttonClass = 'w-button'
 
-  const trackClickEvent = function () {
-    const eventCategory =
-      this.getAttribute('data-event-category') || this.classList.contains(topNavLinkClass)
-        ? 'topnav'
-        : this.classList.contains(footerLinkClass)
-        ? 'footer'
-        : ''
-    const eventAction =
-      this.getAttribute('data-event-action') || this.classList.contains(buttonClass)
-        ? 'button click'
-        : 'click'
-    let eventLabel = this.getAttribute('data-event-label') || this.href
-    const eventValue = this.getAttribute('data-event-value')
+//   const trackClickEvent = function () {
+//     const eventCategory =
+//       this.getAttribute('data-event-category') || this.classList.contains(topNavLinkClass)
+//         ? 'topnav'
+//         : this.classList.contains(footerLinkClass)
+//         ? 'footer'
+//         : ''
+//     const eventAction =
+//       this.getAttribute('data-event-action') || this.classList.contains(buttonClass)
+//         ? 'button click'
+//         : 'click'
+//     let eventLabel = this.getAttribute('data-event-label') || this.href
+//     const eventValue = this.getAttribute('data-event-value')
 
-    const parent = this.parentNode
-    let parent2 = null
-    let parent3 = null
-    if (parent != null) {
-      parent2 = parent.parentNode
-    }
-    let myId = ''
-    if (parent2 != null) {
-      parent3 = parent2.parentNode
-    }
+//     const parent = this.parentNode
+//     let parent2 = null
+//     let parent3 = null
+//     if (parent != null) {
+//       parent2 = parent.parentNode
+//     }
+//     let myId = ''
+//     if (parent2 != null) {
+//       parent3 = parent2.parentNode
+//     }
 
-    if (parent3 != null && parent3.classList.contains('myga-event')) {
-      myId = parent3.getAttribute('id')
+//     if (parent3 != null && parent3.classList.contains('myga-event')) {
+//       myId = parent3.getAttribute('id')
 
-      if (eventLabel == 'parent') {
-        eventLabel = myId
-      }
-    }
+//       if (eventLabel == 'parent') {
+//         eventLabel = myId
+//       }
+//     }
 
-    if ('gtag' in window) {
-      console.log('gtag')
-      let info = { event_category: eventCategory, event_label: eventLabel, value: eventValue }
-      console.log(eventAction)
-      console.log(info)
-      let eventAction2 = this.getAttribute('data-event-action')
-      console.log('data-event-action attribute:' + eventAction2)
-      console.log('data-event-action or buttonClass:' + eventAction)
-      gtag('event', eventLabel, info) // eventLabel instead of eventAction
-    }
-  }
+//     if ('gtag' in window) {
+//       console.log('gtag')
+//       let info = { event_category: eventCategory, event_label: eventLabel, value: eventValue }
+//       console.log(eventAction)
+//       console.log(info)
+//       let eventAction2 = this.getAttribute('data-event-action')
+//       console.log('data-event-action attribute:' + eventAction2)
+//       console.log('data-event-action or buttonClass:' + eventAction)
+//       gtag('event', eventLabel, info) // eventLabel instead of eventAction
+//     }
+//   }
 
-  // Find all anchor tags
-  let elementsToTrack = document.getElementsByTagName('a')
-  if (trackClassName) {
-    elementsToTrack = [
-      ...new Set([...elementsToTrack, ...document.getElementsByClassName(trackClassName)])
-    ]
-  }
-  // Add an event listener to each of the elements you found
-  elementsToTrack.forEach((el) => {
-    el.addEventListener('click', trackClickEvent)
-  })
-})()
+//   // Find all anchor tags
+//   let elementsToTrack = document.getElementsByTagName('a')
+//   if (trackClassName) {
+//     elementsToTrack = [
+//       ...new Set([...elementsToTrack, ...document.getElementsByClassName(trackClassName)])
+//     ]
+//   }
+//   // Add an event listener to each of the elements you found
+//   elementsToTrack.forEach((el) => {
+//     el.addEventListener('click', trackClickEvent)
+//   })
+// })()
 
 var ssoLogin = function (item) {
   $('.sso-btn-container').css('display', 'block')
