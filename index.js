@@ -290,8 +290,8 @@ $(document).ready(function () {
 })
 
 $('.submit-button').click(() => {
-  const email = $('#email')
-  const name = $('#name')
+  const email = $('#email').val()
+  const name = $('#name').val()
   const form = $('#wf-form-Form-Date')
   console.log('email', email)
   console.log('name', name)
