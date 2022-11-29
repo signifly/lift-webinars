@@ -24,12 +24,23 @@ function validateSSOToken(code, uri) {
 
     if (request.status >= 200 && request.status < 400) {
       console.log('data', data)
+
       Cookies.set('lift.sso.login', 1, { expires: 1 })
-      Cookies.set('lift.user', data.user.user.email, { expires: 1 })
-      Cookies.set('lift.name', `${data.user.user.firstName} ${data.user.user.lastName}`, {
-        expires: 1
-      })
-      Cookies.set('lift.userId', data.user.user.uid, { expires: 1 })
+
+      if (data?.user?.user?.email) {
+        Cookies.set('lift.user', data.user.user.email, { expires: 1 })
+      }
+
+      if (data?.user?.user?.firstName && data?.user?.user?.lastName) {
+        Cookies.set('lift.name', `${data.user.user.firstName} ${data.user.user.lastName}`, {
+          expires: 1
+        })
+      }
+
+
+      if (data?.user?.user?.uid) {
+        Cookies.set('lift.userId', data.user.user.uid, { expires: 1 })
+      }
 
       $('.sso-btn-container').css('display', 'none')
       $('.form-after-login').css('display', 'block')
