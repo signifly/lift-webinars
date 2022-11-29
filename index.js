@@ -27,19 +27,19 @@ function validateSSOToken(code, uri) {
 
       Cookies.set('lift.sso.login', 1, { expires: 1 })
 
-      if (data?.user?.user?.email) {
-        Cookies.set('lift.user', data.user.user.email, { expires: 1 })
+      if (data?.user?.email) {
+        Cookies.set('lift.user', data.user.email, { expires: 1 })
       }
 
-      if (data?.user?.user?.firstName && data?.user?.user?.lastName) {
-        Cookies.set('lift.name', `${data.user.user.firstName} ${data.user.user.lastName}`, {
+      if (data?.user?.firstName && data?.user?.lastName) {
+        Cookies.set('lift.name', `${data.user.firstName} ${data.user.lastName}`, {
           expires: 1
         })
       }
 
 
-      if (data?.user?.user?.uid) {
-        Cookies.set('lift.userId', data.user.user.uid, { expires: 1 })
+      if (data?.user?.uid) {
+        Cookies.set('lift.userId', data.user.uid, { expires: 1 })
       }
 
       $('.sso-btn-container').css('display', 'none')
