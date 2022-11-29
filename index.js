@@ -296,4 +296,20 @@ $('.submit-button').click(() => {
   console.log('email', email)
   console.log('name', name)
   console.log('form', form)
+
+  postZapier(email, name)
 })
+
+async function postZapier(email, name) {
+  const payload = { email, name }
+  const zapierId = '803757'
+  const zapIdNewsletter = 'bnd6aa6'
+  try {
+    await fetch(`https://hooks.zapier.com/hooks/catch/${zapierId}/${zapIdNewsletter}/`, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
