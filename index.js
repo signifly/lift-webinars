@@ -1,4 +1,6 @@
-;(() => {
+console.log('TEST')
+
+(() => {
   // automatically track all anchor click events:
   // also track all elements that have this class
   const trackClassName = 'ga-event'
