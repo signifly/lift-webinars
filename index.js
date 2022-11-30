@@ -292,13 +292,13 @@ $(document).ready(function () {
 $('.submit-button').click(() => {
   const email = $('#email').val()
   const name = $('#name').val()
-  const form = $('#wf-form-Form-Date')
   const webinarTitle = $('#wf-form-Form-Date #form-title').val()
+  const webinarDate = $('.webinar-signup-form #webinar-date').text()
 
-  postZapier(email, name, webinarTitle)
+  postZapier(email, name, webinarTitle, webinarDate)
 })
 
-async function postZapier(email, name, webinarTitle) {
+async function postZapier(email, name, webinarTitle, webinarDate) {
   const payload = { email, name, webinarTitle }
   const zapierId = '803757'
   const zapIdNewsletter = 'bn1fc6a'
