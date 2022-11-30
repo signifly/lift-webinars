@@ -313,3 +313,7 @@ async function postZapier(email, name) {
     console.error(e)
   }
 }
+
+$('.vc-title--dashboard').each((i, item) => {
+  item.innerHTML = `${item.textContent.slice(0, 35)}${item.textContent.length > 35 ? '...' : ''}`
+})
