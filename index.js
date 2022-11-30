@@ -301,7 +301,7 @@ $('.submit-button').click(() => {
 async function postZapier(email, name, webinarTitle) {
   const payload = { email, name, webinarTitle }
   const zapierId = '803757'
-  const zapIdNewsletter = 'bnd6aa6'
+  const zapIdNewsletter = 'bn1fc6a'
   try {
     await fetch(`https://hooks.zapier.com/hooks/catch/${zapierId}/${zapIdNewsletter}/`, {
       method: 'POST',
