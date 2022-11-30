@@ -299,7 +299,7 @@ $('.submit-button').click(() => {
 })
 
 async function postZapier(email, name, webinarTitle, webinarDate) {
-  const payload = { email, name, webinarTitle }
+  const payload = { email, name, webinarTitle, webinarDate }
   const zapierId = '803757'
   const zapIdNewsletter = 'bn1fc6a'
   try {
