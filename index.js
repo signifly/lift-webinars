@@ -293,15 +293,13 @@ $('.submit-button').click(() => {
   const email = $('#email').val()
   const name = $('#name').val()
   const form = $('#wf-form-Form-Date')
-  console.log('email', email)
-  console.log('name', name)
-  console.log('form', form)
+  const webinarTitle = $('#wf-form-Form-Date #form-title').val()
 
-  postZapier(email, name)
+  postZapier(email, name, webinarTitle)
 })
 
-async function postZapier(email, name) {
-  const payload = { email, name }
+async function postZapier(email, name, webinarTitle) {
+  const payload = { email, name, webinarTitle }
   const zapierId = '803757'
   const zapIdNewsletter = 'bnd6aa6'
   try {
