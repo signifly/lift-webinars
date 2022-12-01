@@ -301,8 +301,8 @@ $(document).ready(function () {
   }
 })
 
-function getWebinarDateFormat() {
-  const webinarDate = $('#upcoming-webinar-date')[0]?.outerText
+function getWebinarDateFormat(query) {
+  const webinarDate = $(query)[0]?.outerText
   if (webinarDate) {
     const dateArray = webinarDate.split('\n')[0]?.split(',')
     const dateString = dateArray[1] + dateArray[2]
@@ -321,12 +321,22 @@ function getWebinarDateFormat() {
   }
 }
 
-$('.submit-button').click(() => {
+$('#webinar-form-submit').click(() => {
   const email = $('#email').val()
   const name = $('#name').val()
-  const webinarTitle = $('#wf-form-Form-Date #form-title').val()
+  const webinarTitle = $('.webinar-signup-form #form-title').val()
   const webinarDate = $('.webinar-signup-form #webinar-date').text()
-  const webinarDate2 = getWebinarDateFormat()
+  const webinarDate2 = getWebinarDateFormat('#upcoming-webinar-date')
+
+  postZapier(email, name, webinarTitle, webinarDate, webinarDate2)
+})
+
+$('#next-webinar-form-submit').click(() => {
+  const email = $('#email-2').val()
+  const name = $('#name-2').val()
+  const webinarTitle = $('.next-webinar-signup-form #webinar-title').text()
+  const webinarDate = $('.next-webinar-signup-form #webinar-date').text()
+  const webinarDate2 = getWebinarDateFormat('.next-webinar-signup-form #webinar-date')
 
   postZapier(email, name, webinarTitle, webinarDate, webinarDate2)
 })
