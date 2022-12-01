@@ -84,6 +84,16 @@ $('#upcoming-webinar-register').click(function (item) {
   }, 150)
 })
 
+$('#next-webinar-register').click(function (item) {
+  localStorage.setItem('modalId', item.target.id)
+  $('html').addClass('lock-scroll')
+  $('.main-wrapper').addClass('lock-scroll')
+  $('.next-webinar-signup-form').addClass('show')
+  setTimeout(() => {
+    $('.next-webinar-signup-form').addClass('display')
+  }, 150)
+})
+
 function handleDetailsButtons() {
   $('.vc-btn-details').click(function (item) {
     localStorage.setItem('modalId', item.target.id)
@@ -158,9 +168,11 @@ $('.popup-modal--close').click(function (item) {
   if (itemClasslist.find((c) => c === 'popup-modal--close')) {
     $('#popup-modal').removeClass('display')
     $('.webinar-signup-form').removeClass('display')
+    $('.next-webinar-signup-form').removeClass('display')
     setTimeout(() => {
       $('#popup-modal').removeClass('show')
       $('.webinar-signup-form').removeClass('show')
+      $('.next-webinar-signup-form').removeClass('show')
       $('#popup-modal').removeClass('popup-modal--video')
       $('#popup-modal .popup-card').removeClass('popup-card--video').css('background-color', '')
     }, 150)
