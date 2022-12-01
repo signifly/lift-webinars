@@ -289,17 +289,38 @@ $(document).ready(function () {
   }
 })
 
+function getWebinarDateFormat() {
+  const webinarDate = $('#upcoming-webinar-date')[0]?.outerText
+  if (webinarDate) {
+    const dateArray = webinarDate.split('\n')[0]?.split(',')
+    const dateString = dateArray[1] + dateArray[2]
+    const dateFormat = dateString.split(' ')
+    const timeArray = webinarDate.split('\n')[1]?.split('-')
+    const startTime = `${timeArray[0].split(' ')[0]} ${timeArray[1].split(' ')[2]} ${
+      timeArray[1].split(' ')[3]
+    }`
+    return new Date(
+      `${dateFormat[1]} ${dateFormat[2].slice(0, dateFormat[2].length - 2)} ${
+        dateFormat[3]
+      } ${startTime}`
+    )
+  } else {
+    return ''
+  }
+}
+
 $('.submit-button').click(() => {
   const email = $('#email').val()
   const name = $('#name').val()
   const webinarTitle = $('#wf-form-Form-Date #form-title').val()
   const webinarDate = $('.webinar-signup-form #webinar-date').text()
+  const webinarDate2 = getWebinarDateFormat()
 
-  postZapier(email, name, webinarTitle, webinarDate)
+  postZapier(email, name, webinarTitle, webinarDate, webinarDate2)
 })
 
-async function postZapier(email, name, webinarTitle, webinarDate) {
-  const payload = { email, name, webinarTitle, webinarDate }
+async function postZapier(email, name, webinarTitle, webinarDate, webinarDate2) {
+  const payload = { email, name, webinarTitle, webinarDate, webinarDate2 }
   const zapierId = '803757'
   const zapIdNewsletter = 'bn1fc6a'
   try {
