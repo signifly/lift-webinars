@@ -314,31 +314,32 @@ function getWebinarDateFormat(query) {
 }
 
 $('#webinar-form-submit').click(() => {
+  const zapId = 'bnxcx5s';
   const email = $('#email').val();
   const name = $('#name').val();
   const webinarTitle = $('.webinar-signup-form #form-title').val();
   const webinarDate = $('.webinar-signup-form #webinar-date').text();
   const webinarDate2 = getWebinarDateFormat('#upcoming-webinar-date');
 
-  postZapier(email, name, webinarTitle, webinarDate, webinarDate2);
+  postZapier(zapId, email, name, webinarTitle, webinarDate, webinarDate2);
 });
 
 $('#next-webinar-form-submit').click(() => {
+  const zapId = 'bnx0gwu';
   const email = $('#email-2').val();
   const name = $('#name-2').val();
   const webinarTitle = $('.next-webinar-signup-form #webinar-title').text();
   const webinarDate = $('.next-webinar-signup-form #webinar-date').text();
   const webinarDate2 = getWebinarDateFormat('.next-webinar-signup-form #webinar-date');
 
-  postZapier(email, name, webinarTitle, webinarDate, webinarDate2);
+  postZapier(zapId, email, name, webinarTitle, webinarDate, webinarDate2);
 });
 
-async function postZapier(email, name, webinarTitle, webinarDate, webinarDate2) {
+async function postZapier(zapId, email, name, webinarTitle, webinarDate, webinarDate2) {
   const payload = { email, name, webinarTitle, webinarDate, webinarDate2 };
   const zapierId = '12126966';
-  const zapIdNewsletter = 'bnxcx5s';
   try {
-    await fetch(`https://hooks.zapier.com/hooks/catch/${zapierId}/${zapIdNewsletter}/`, {
+    await fetch(`https://hooks.zapier.com/hooks/catch/${zapierId}/${zapId}/`, {
       method: 'POST',
       body: JSON.stringify(payload),
     });
