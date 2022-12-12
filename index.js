@@ -271,6 +271,24 @@ function toggleButtons() {
   const afterRegisterButtons = myGetById('after-register-buttons');
   registerButton.style.display = 'none';
   afterRegisterButtons.style.display = 'flex';
+
+  checkAfterRegisterButtons();
+}
+
+function checkAfterRegisterButtons() {
+  try {
+    const watchButton = myGetById('upcoming-webinar-go-to');
+    const webinarDate = $('#upcoming-webinar-date');
+    const date = getWebinarDateFormat(webinarDate);
+    const today = new Date();
+
+    // check is date is within 1 hour
+    if (date - today < 3600000) {
+      watchButton.style.display = 'flex';
+    }
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function mobileOS() {
