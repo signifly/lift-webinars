@@ -325,24 +325,56 @@ $('#webinar-form-submit').click(() => {
   const email = $('#email').val()
   const name = $('#name').val()
   const webinarTitle = $('.webinar-signup-form #form-title').val()
-  const webinarDate = $('.webinar-signup-form #webinar-date').text()
-  const webinarDate2 = getWebinarDateFormat('#upcoming-webinar-date')
+  const webinarCoach = $('.webinar-signup-form #webinar-coach').text()
+  const webinarDateTime = $('.webinar-signup-form #webinar-date')[0].innerHTML
+  const webinarDateTimeArray = webinarDateTime.split('<br>')
+  const webinarDay = webinarDateTimeArray[0]
+  const webinarTime = webinarDateTimeArray[1]
+  const webinarDateComplete = webinarDateTime.replace('<br>', ' ')
+  const webinarDateFormatted = getWebinarDateFormat('#upcoming-webinar-date')
+  const webinarLink = $('.webinar-signup-form #webinar-link').text()
 
-  postZapier(email, name, webinarTitle, webinarDate, webinarDate2)
+  postZapier({
+    email,
+    name,
+    webinarTitle,
+    webinarCoach,
+    webinarDay,
+    webinarTime,
+    webinarDateComplete,
+    webinarDateFormatted,
+    webinarLink
+  })
 })
 
 $('#next-webinar-form-submit').click(() => {
   const email = $('#email-2').val()
   const name = $('#name-2').val()
   const webinarTitle = $('.next-webinar-signup-form #webinar-title').text()
-  const webinarDate = $('.next-webinar-signup-form #webinar-date').text()
-  const webinarDate2 = getWebinarDateFormat('.next-webinar-signup-form #webinar-date')
+  const webinarCoach = $('.next-webinar-signup-form #webinar-coach').text()
+  const webinarDateTime = $('.next-webinar-signup-form #webinar-date')[0].innerHTML
+  const webinarDateTimeArray = webinarDateTime.split('<br>')
+  const webinarDay = webinarDateTimeArray[0]
+  const webinarTime = webinarDateTimeArray[1]
+  const webinarDateComplete = webinarDateTime.replace('<br>', ' ')
+  const webinarDateFormatted = getWebinarDateFormat('.next-webinar-signup-form #webinar-date')
+  const webinarLink = $('.next-webinar-signup-form #webinar-link').text()
 
-  postZapier(email, name, webinarTitle, webinarDate, webinarDate2)
+  postZapier({
+    email,
+    name,
+    webinarTitle,
+    webinarCoach,
+    webinarDay,
+    webinarTime,
+    webinarDateComplete,
+    webinarDateFormatted,
+    webinarLink
+  })
 })
 
-async function postZapier(email, name, webinarTitle, webinarDate, webinarDate2) {
-  const payload = { email, name, webinarTitle, webinarDate, webinarDate2 }
+async function postZapier(postData) {
+  const payload = postData
   const zapierId = '803757'
   const zapIdNewsletter = 'bn1fc6a'
   try {
