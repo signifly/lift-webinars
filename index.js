@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   checkSignupStatus()
+  checkSignupStatusNext()
 })
 let videoUrl = ''
 let bumperPlayed = false
@@ -291,6 +292,32 @@ function checkAfterRegisterButtons() {
   } catch (e) {
     console.log(e)
   }
+}
+
+// SAME FOR "NEXT WEBINAR"
+
+function checkSignupStatusNext() {
+  const latestSignup = localStorage ? localStorage.getItem('latestSignupNext') : ''
+  const webinarForm = myGetById('next-webinar-signup-form')
+  const nextEvent = $('.next-webinar-signup-form #webinar-date')[0].innerHTML.replace('<br>', ' ')
+  webinarForm.addEventListener('submit', (e) => {
+    localStorage.setItem('latestSignupNext', nextEvent)
+    toggleButtonsNext()
+  })
+  if (latestSignup ) {
+    const isSignedUp = nextEvent === latestSignup
+
+    if (isSignedUp) {
+      toggleButtonsNext()
+    }
+  }
+}
+
+function toggleButtonsNext() {
+  const registerButton = myGetById('next-webinar-register')
+  const afterRegisterButtons = myGetById('next-after-register-buttons')
+  registerButton.style.display = 'none'
+  afterRegisterButtons.style.display = 'flex'
 }
 
 function mobileOS() {
