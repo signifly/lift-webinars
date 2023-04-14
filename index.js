@@ -136,7 +136,7 @@ function handleWatchButtons() {
 
     if (!Cookies.get('lift.sso.login')) {
       console.log('no cookie set lift.sso.login')
-      const ssoBtnContainer = $('.sso-btn-container').clone()
+      const ssoBtnContainer = $('.sso-btn-container').first().clone()
       $('#popup-modal .popup-card').html(ssoBtnContainer)
       $('#popup-modal .popup-card').css('background-color', 'transparent')
       setTimeout(() => {
